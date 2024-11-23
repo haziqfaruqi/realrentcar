@@ -1,6 +1,6 @@
 Installation
 
-1. Clone the repository: https://github.com/Mohamed-Galdi/RealRentCar
+1. Clone the repository: https://github.com/haziqfaruqi/realrentcar.git
 
 2. Navigate to the project directory: `cd RealRentCar`
 
