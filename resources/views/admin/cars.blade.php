@@ -17,29 +17,29 @@
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
-                            Image
+                            IMAGE
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            brand
+                            BRAND
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            model
+                            MODEL
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            engine
+                            ENGINE
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            price_per_day
+                            PRICE PER DAY
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            quantity
+                            QUANTITY
                         </th>
                         
                         <th scope="col" class="px-6 py-3">
-                            reserved
+                            RESERVED
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Action
+                            ACTION
                         </th>
                     </tr>
                 </thead>
