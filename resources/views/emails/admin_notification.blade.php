@@ -91,7 +91,7 @@
                     <strong>End Date:</strong> {{ $reservation->end_date->format('d-m-Y') }}
                 </div>
                 <div class="info-row">
-                    <strong>Total Price:</strong> ${{ $reservation->total_price }}
+                    <strong>Total Price:</strong> RM{{ $reservation->total_price }}
                 </div>
 
                 <p>If you need to review this reservation, please log in to the admin panel.</p>
