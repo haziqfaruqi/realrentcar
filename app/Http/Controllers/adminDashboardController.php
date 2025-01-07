@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Car;
 use App\Models\Reservation;
+use Illuminate\Support\Facades\Auth;
 
 class adminDashboardController extends Controller
 {
@@ -20,6 +21,10 @@ class adminDashboardController extends Controller
 
         $reservations = Reservation::paginate(8);
         $avatars = User::all();
-        return view('admin.adminDashboard', compact('clients', 'avatars', 'admins', 'cars', 'reservations'));
+        
+        $notifications = Auth::user()->notifications;
+        $notificationsCount = Auth::user()->unreadNotifications->count();
+
+        return view('admin.adminDashboard', compact('clients', 'avatars', 'admins', 'cars', 'reservations', 'notifications', 'notificationsCount'));
     }
 }

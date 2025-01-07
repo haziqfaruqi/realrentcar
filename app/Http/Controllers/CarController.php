@@ -6,7 +6,7 @@ use App\Models\Car;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\Auth;
 
 class CarController extends Controller
 {
@@ -16,7 +16,11 @@ class CarController extends Controller
     public function index()
     {
         $cars = Car::latest()->paginate(8);
-        return view('admin.cars', compact('cars'));
+
+        $notificationsCount = Auth::user()->unreadNotifications->count();
+        $notifications = Auth::user()->notifications;
+
+        return view('admin.cars', compact('cars', 'notifications', 'notificationsCount'));
     }
 
     /**
@@ -24,7 +28,10 @@ class CarController extends Controller
      */
     public function create()
     {
-        return view('admin.createCar');
+        $notificationsCount = Auth::user()->unreadNotifications->count();
+        $notifications = Auth::user()->notifications;
+        
+        return view('admin.createCar', compact('notifications', 'notificationsCount'));
     }
 
     /**
@@ -79,8 +86,11 @@ class CarController extends Controller
      */
     public function edit(Car $car)
     {
+        $notificationsCount = Auth::user()->unreadNotifications->count();
+        $notifications = Auth::user()->notifications;
+
         $car = Car::findOrFail($car->id);
-        return view('admin.updateCar', compact('car'));
+        return view('admin.updateCar', compact('car', 'notifications', 'notificationsCount'));
     }
 
     /**

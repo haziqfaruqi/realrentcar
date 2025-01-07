@@ -14,6 +14,8 @@
     @include('flatpickr::components.style')
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
     <style>
         html {
             scroll-behavior: smooth;
@@ -176,6 +178,18 @@
                             </svg>
                         </button>
 
+                        <button id="notificationButton" class="relative text-black bg-pr-400 hover:bg-pr-600 font-medium rounded-lg text-sm px-3 py-2.5 text-center inline-flex items-center">
+                            <!-- Notification Icon -->
+                            <i class="fas fa-bell text-xl"></i>
+                        
+                            <!-- Notification Badge (Only visible if there are notifications) -->
+                            @if($notificationsCount > 0)
+                                <span class="absolute top-0 right-0 inline-block w-6 h-6 bg-red-600 text-white text-xs font-bold rounded-full text-center">
+                                    {{ $notificationsCount }}
+                                </span>
+                            @endif
+                        </button>                                               
+
                         <div id="dropdown"
                             class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                             <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
@@ -199,6 +213,17 @@
                                 </li>
                             </ul>
                         </div>
+
+                        <div id="notificationDropdown" class="hidden absolute right-0 mt-2 bg-white rounded-lg shadow-lg w-64">
+                            <ul>
+                                @foreach ($notifications as $notification)
+                                    <li class="px-4 py-2 border-b last:border-b-0">
+                                        {{ $notification->data['message'] }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        
                     @else
                         <div class="hidden justify-between items-center w-full lg:flex lg:w-auto" id="mobile-menu-2">
                             <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
@@ -556,6 +581,12 @@
             behavior: 'smooth'
         });
     }
+
+    document.getElementById('notificationButton').addEventListener('click', function () {
+        const dropdown = document.getElementById('notificationDropdown');
+        dropdown.classList.toggle('hidden');
+    });
+
 </script>
 @include('flatpickr::components.script')
 

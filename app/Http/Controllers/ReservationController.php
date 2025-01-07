@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\AdminNotification;
 use Illuminate\Support\Facades\Mail;
+use App\Notifications\ReservationCancelledNotification;
 
 class ReservationController extends Controller
 {
@@ -127,7 +128,7 @@ class ReservationController extends Controller
         $reservation = Reservation::find($reservation->id);
         $reservation->status = $request->status;
         $car = $reservation->car;
-        if($request->status == 'Ended' || $request->status == 'Canceled' ){
+        if($request->status == 'Ended' || $request->status == 'Cancelled' ){
             $car->status = 'Available';
             $car->save();
         }
@@ -149,5 +150,17 @@ class ReservationController extends Controller
     public function destroy(Reservation $reservation)
     {
         //
+    }
+
+    public function cancelReservation($id)
+    {
+        $reservation = Reservation::findOrFail($id); // Find the reservation
+        $reservation->update(['status' => 'Cancelled']); // Mark it as cancelled
+
+        // Notify the admin
+        $admin = User::where('role', 'admin')->first();
+        $admin->notify(new ReservationCancelledNotification($reservation));
+
+        return redirect()->route('clientReservation')->with('success', 'Reservation cancelled successfully.');
     }
 }

@@ -1,5 +1,12 @@
 @extends('layouts.myapp')
 @section('content')
+<!-- Success Message -->
+    @if (session('success'))
+        <div class="alert alert-success bg-green-500 text-white p-3 rounded-md mb-4">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <div class="mx-auto max-w-screen-xl">
         <div class="">
             <div class="my-6 py-6 px-4 bg-white rounded-md flex justify-start items-center flex-wrap md:flex-nowrap gap-y-4 md:gap-y-0">
@@ -34,9 +41,9 @@
 
                     <div
                         class="bg-red-300 p-4 rounded-md border-2 border-red-700 flex flex-col justify-center items-center">
-                        <p class="text-lg font-car font-normal text-gray-500">Canceled Reservations </p>
+                        <p class="text-lg font-car font-normal text-gray-500">Cancelled Reservations </p>
                         <h2 class="font-medium text-red-600 text-3xl">
-                            {{ Auth::user()->reservations->where('status', 'Canceled')->count() }}</h2>
+                            {{ Auth::user()->reservations->where('status', 'Cancelled')->count() }}</h2>
                     </div>
                 </div>
             </div>
@@ -77,7 +84,7 @@
                                         @if ($reservation->payment_status == 'Pending')
                                             <span
                                                 class="p-2 text-white rounded-md bg-yellow-300 ">{{ $reservation->payment_status }}</span>
-                                        @elseif ($reservation->payment_status == 'Canceled')
+                                        @elseif ($reservation->payment_status == 'Cancelled')
                                             <span
                                                 class="p-2 text-white rounded-md bg-red-500 ">{{ $reservation->payment_status }}</span>
                                         @elseif ($reservation->payment_status == 'Paid')
@@ -98,7 +105,7 @@
                                         @elseif ($reservation->status == 'Active')
                                             <span
                                                 class="p-2 text-white rounded-md bg-green-500 px-4">{{ $reservation->status }}</span>
-                                        @elseif ($reservation->status == 'Canceled')
+                                        @elseif ($reservation->status == 'Cancelled')
                                             <span
                                                 class="p-2 text-white rounded-md bg-red-500 ">{{ $reservation->status }}</span>
                                         @endif
@@ -119,6 +126,14 @@
                                 </a>
                             </div>
 
+                            <div class="mt-8 text-center w-full px-2">
+                                <form action="{{ route('reservations.cancel', $reservation->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="bg-red-600 p-3 text-white font-bold hover:bg-red-800 w-full rounded-md">
+                                        Cancel Reservation
+                                    </button>
+                                </form>                                
+                            </div>                                                     
                         </div>
 
                     </div>

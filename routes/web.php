@@ -71,8 +71,10 @@ Route::prefix('admin')->middleware('admin')->group(function () {
 
         $admins = User::where('role', 'admin')->get();
         $clients = User::where('role', 'client')->paginate(5);
+        $notifications = Auth::user()->notifications;
+        $notificationsCount = Auth::user()->unreadNotifications->count();
 
-        return view('admin.users', compact('admins', 'clients'));
+        return view('admin.users', compact('admins', 'clients', 'notifications', 'notificationsCount'));
     })->name('users');
 
     Route::get('/updatePayment/{reservation}', [ReservationController::class, 'editPayment'])->name('editPayment');
@@ -107,6 +109,8 @@ Route::get('/reservations', function () {
 
 
 route::get('invoice/{reservation}', [invoiceController::class, 'invoice'])->name('invoice')->middleware('auth', 'restrictAdminAccess');
+
+Route::post('/reservations/{id}/cancel', [ReservationController::class, 'cancelReservation'])->name('reservations.cancel');
 
 
 //---------------------------------------------------------------------------//
