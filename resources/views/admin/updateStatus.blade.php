@@ -28,7 +28,7 @@
                             <option value="Active">Active</option>
                             <option value="Pending">Pending</option>
                             <option value="Ended">Ended</option>
-                            <option value="Canceled">Canceled</option>
+                            <option value="Cancelled">Cancelled</option>
                         </select>
                     </div>
                     <div class="flex justify-center mt-12">

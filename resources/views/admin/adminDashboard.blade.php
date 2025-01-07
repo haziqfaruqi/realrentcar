@@ -171,7 +171,7 @@
                                                 @if ($reservation->payment_status == 'Pending')
                                                     <span
                                                         class="p-2 text-white rounded-md bg-yellow-300 ">{{ $reservation->payment_status }}</span>
-                                                @elseif ($reservation->payment_status == 'Canceled')
+                                                @elseif ($reservation->payment_status == 'Cancelled')
                                                     <span
                                                         class="p-2 text-white rounded-md bg-red-500 ">{{ $reservation->payment_status }}</span>
                                                 @elseif ($reservation->payment_status == 'Paid')
@@ -190,7 +190,7 @@
                                                 @elseif ($reservation->status == 'Active')
                                                     <span
                                                         class="p-2 text-white rounded-md bg-green-500 px-4">{{ $reservation->status }}</span>
-                                                @elseif ($reservation->status == 'Canceled')
+                                                @elseif ($reservation->status == 'Cancelled')
                                                     <span
                                                         class="p-2 text-white rounded-md bg-red-500 ">{{ $reservation->status }}</span>
                                                 @endif

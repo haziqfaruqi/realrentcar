@@ -27,7 +27,7 @@
                             name="payment_status" id="payment_status">
                             <option value="Pending">Pending</option>
                             <option value="Paid">Paid</option>
-                            <option value="Canceled">Canceled</option>
+                            <option value="Cancelled">Cancelled</option>
                         </select>
                     </div>
                     <div class="flex justify-center mt-12">
