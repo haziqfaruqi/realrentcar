@@ -93,6 +93,9 @@
                 <div class="info-row">
                     <strong>Total Price:</strong> RM{{ $reservation->total_price }}
                 </div>
+                <div class="info-row">
+                    <strong>Total Price To Pay:</strong> RM{{ $reservation->total_price - ($reservation->total_price * 85) / 100 + $reservation->total_price }}
+                </div>
 
                 <p>If you need to review this reservation, please log in to the admin panel.</p>
 
