@@ -13,7 +13,8 @@ class Reservation extends Model
         'user_id',
         'car_id',
         'reservation_date',
-        'status', // Add this line
+        'status',
+        'payment_status' // Add this line
     ];
 
     public function user()
@@ -25,4 +26,10 @@ class Reservation extends Model
     {
         return $this->belongsTo(Car::class);
     }
+
+    public function isPaid()
+    {
+        return $this->payment_status === 'Paid';
+    }
+
 }

@@ -12,6 +12,7 @@ use App\Http\Controllers\invoiceController;
 use App\Http\Controllers\AdminAuth\LoginController;
 use App\Http\Controllers\carSearchController;
 use App\Http\Controllers\testController;
+use App\Http\Controllers\PaymentController;
 use App\Models\User;
 use App\Models\Car;
 use App\Models\Reservation;
@@ -112,6 +113,10 @@ route::get('invoice/{reservation}', [invoiceController::class, 'invoice'])->name
 
 Route::post('/reservations/{id}/cancel', [ReservationController::class, 'cancelReservation'])->name('reservations.cancel');
 
+//---------------------------------------------------------------------------//
+
+Route::get('/payment/{reservation}', [PaymentController::class, 'showPaymentPage'])->name('payment.page');
+Route::post('/process-payment', [PaymentController::class, 'processPayment'])->name('payment.process');
 
 //---------------------------------------------------------------------------//
 
