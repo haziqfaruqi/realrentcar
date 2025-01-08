@@ -214,15 +214,30 @@
                             </ul>
                         </div>
 
-                        <div id="notificationDropdown" class="hidden absolute right-0 mt-2 bg-white rounded-lg shadow-lg w-64">
-                            <ul>
-                                @foreach ($notifications as $notification)
-                                    <li class="px-4 py-2 border-b last:border-b-0">
-                                        {{ $notification->data['message'] }}
+                        <div id="notificationDropdown" class="hidden absolute right-0 mt-2 bg-white rounded-lg shadow-lg w-64 z-50">
+                            <ul class="divide-y divide-gray-200">
+                                @if($notifications->isEmpty())
+                                    <li class="px-4 py-2 text-center text-gray-500">
+                                        No new notifications
                                     </li>
-                                @endforeach
+                                @else
+                                    @foreach ($notifications as $notification)
+                                        <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                                            <p class="text-sm text-gray-800 font-semibold">
+                                                {{ $notification->data['title'] ?? 'Notification' }}
+                                            </p>
+                                            <p class="text-xs text-gray-500">
+                                                {{ $notification->data['message'] }}
+                                            </p>
+                                            <p class="text-xs text-gray-400">
+                                                {{ $notification->created_at->diffForHumans() }}
+                                            </p>
+                                        </li>
+                                    @endforeach
+                                @endif
                             </ul>
                         </div>
+                        
                         
                     @else
                         <div class="hidden justify-between items-center w-full lg:flex lg:w-auto" id="mobile-menu-2">
