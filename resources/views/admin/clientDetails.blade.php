@@ -7,26 +7,26 @@
                     <img loading="lazy" class="w-[150px]" src="{{ $user->avatar }}" alt="{{ $user->name }}">
                 </div>
                 <div class="text-center md:text-start">
-                    <h2 class="text-lg font-medium text-gray-900"><span
+                    <h2 class="text-lg font-medium"><span
                             class="text-lg font-car font-normal text-gray-500">Name:
                         </span>{{ $user->name }}</h2>
-                    <h2 class="text-lg font-medium text-gray-900"><span
-                            class="text-lg font-car font-normal text-gray-500">Eamil:
+                    <h2 class="text-lg font-medium"><span
+                            class="text-lg font-car font-normal text-gray-500">Email:
                         </span>{{ $user->email }}</h2>
 
-                    <h2 class="text-lg font-medium text-green-600"><span
+                    <h2 class="text-lg font-medium"><span
                             class="text-lg font-car font-normal text-gray-500">Active
                             Reservations: </span>{{ $user->reservations->where('status', 'Active')->count() }}</h2>
-                    <h2 class="text-lg font-medium text-yellow-300"><span
+                    <h2 class="text-lg font-medium"><span
                             class="text-lg font-car font-normal text-gray-500">Pending
                             Reservations: </span>{{ $user->reservations->where('status', 'Pending')->count() }}</h2>
-                    <h2 class="text-lg font-medium text-Black"><span
+                    <h2 class="text-lg font-medium"><span
                             class="text-lg font-car font-normal text-gray-500">Ended
                             Reservations: </span>{{ $user->reservations->where('status', 'Ended')->count() }}</h2>
-                    <h2 class="text-lg font-medium text-red-600"><span
+                    <h2 class="text-lg font-medium"><span
                             class="text-lg font-car font-normal text-gray-500">Cancelled
                             Reservations: </span>{{ $user->reservations->where('status', 'Cancelled')->count() }}</h2>
-                    <h2 class="text-lg font-medium text-pr-400"><span
+                    <h2 class="text-lg font-medium"><span
                             class="text-lg font-car font-normal text-gray-500">Total
                             Reservations: </span>{{ $user->reservations->count() }}</h2>
 
