@@ -127,24 +127,27 @@
                             </div>
 
                             <div class="mt-8 text-center w-full px-2">
-                                <form action="{{ route('payment.page', $reservation->id) }}" method="GET">
-                                    @csrf
-                                    <button type="submit" class="bg-green-600 p-3 text-white font-bold hover:bg-green-800 w-full rounded-md">
-                                        Pay Now
-                                    </button>
-                                </form>
+                                @if ($reservation->status !== 'Ended')
+                                    <form action="{{ route('payment.page', $reservation->id) }}" method="GET">
+                                        @csrf
+                                        <button type="submit" class="bg-green-600 p-3 text-white font-bold hover:bg-green-800 w-full rounded-md">
+                                            Pay Now
+                                        </button>
+                                    </form>
+                                @endif
                             </div>
 
                             <div class="mt-8 text-center w-full px-2">
-                                <form action="{{ route('reservations.cancel', $reservation->id) }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="bg-red-600 p-3 text-white font-bold hover:bg-red-800 w-full rounded-md">
-                                        Cancel Reservation
-                                    </button>
-                                </form>                                
+                                @if ($reservation->status !== 'Ended')
+                                    <form action="{{ route('reservations.cancel', $reservation->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="bg-red-600 p-3 text-white font-bold hover:bg-red-800 w-full rounded-md">
+                                            Cancel Reservation
+                                        </button>
+                                    </form>
+                                @endif                             
                             </div>                                                     
                         </div>
-
                     </div>
                 @empty
                     <div class="h-full w-full flex justify-center items-center">
