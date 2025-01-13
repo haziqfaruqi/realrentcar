@@ -21,7 +21,16 @@ use App\Models\Reservation;
 // ------------------- guest routes --------------------------------------- //
 Route::get('/', function () {
     $cars = Car::take(6)->where('status', '=', 'available')->get();
-    return view('home', compact('cars'));
+
+    if (Auth::check()) {
+        $notifications = Auth::user()->notifications;
+        $notificationsCount = Auth::user()->unreadNotifications->count();
+    } else {
+        $notifications = collect();
+        $notificationsCount = 0;
+    }
+
+    return view('home', compact('cars', 'notifications', 'notificationsCount'));
 })->name('home');
 
 Route::get('/cars', [clientCarController::class, 'index'])->name('cars');
